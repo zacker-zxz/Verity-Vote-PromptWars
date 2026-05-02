@@ -56,16 +56,23 @@ const fadeUp = {
 
 export default function HomePage() {
   return (
-    <div className="page-enter">
+    <div className="page-enter relative overflow-hidden">
+      {/* Background Aura */}
+      <div className="aura opacity-20" aria-hidden="true" />
+      
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center justify-center px-4 overflow-hidden">
         {/* Floating orbs */}
-        <div
-          className="absolute w-72 h-72 rounded-full bg-[var(--accent)] opacity-[0.06] blur-[100px] top-1/4 -left-20"
+        <motion.div
+          animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute w-72 h-72 rounded-full bg-[var(--accent)] opacity-[0.08] blur-[100px] top-1/4 -left-20"
           aria-hidden="true"
         />
-        <div
-          className="absolute w-96 h-96 rounded-full bg-purple-500 opacity-[0.05] blur-[120px] bottom-1/4 -right-20"
+        <motion.div
+          animate={{ x: [0, -40, 0], y: [0, 60, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute w-96 h-96 rounded-full bg-[var(--success)] opacity-[0.06] blur-[120px] bottom-1/4 -right-20"
           aria-hidden="true"
         />
 
@@ -76,8 +83,8 @@ export default function HomePage() {
           className="max-w-4xl mx-auto text-center relative z-10"
         >
           {/* Badge */}
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[var(--glass-border)] text-sm text-muted mb-8">
-            <Sparkles size={14} className="text-[var(--accent)]" />
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[var(--glass-border)] text-sm text-muted mb-8 hover:border-[var(--accent)] transition-colors cursor-default">
+            <Sparkles size={14} className="text-[var(--accent)] animate-pulse" />
             Powered by Google AI &amp; Maps
           </motion.div>
 
@@ -87,7 +94,7 @@ export default function HomePage() {
           >
             Your Election
             <br />
-            <span className="gradient-text">Journey Starts Here</span>
+            <span className="gradient-text drop-shadow-2xl">Journey Starts Here</span>
           </motion.h1>
 
           <motion.p
@@ -99,23 +106,23 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/onboarding" className="btn-primary px-8 py-4 text-base flex items-center gap-2 group">
+            <Link href="/onboarding" className="btn-primary px-10 py-5 text-lg flex items-center gap-3 group glow-accent">
               <span className="relative z-10 flex items-center gap-2">
                 Start Your Journey
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
               </span>
             </Link>
-            <Link href="/learn" className="btn-ghost px-8 py-4 text-base flex items-center gap-2">
-              <BookOpen size={18} />
-              Learn How Voting Works
+            <Link href="/learn" className="btn-ghost px-10 py-5 text-lg flex items-center gap-2">
+              <BookOpen size={20} />
+              Learn More
             </Link>
           </motion.div>
 
           {/* Trust badges */}
-          <motion.div variants={fadeUp} className="mt-12 flex items-center justify-center gap-6 text-sm text-muted">
-            <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-[var(--success)]" /> Guided</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-[var(--success)]" /> Simple</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-[var(--success)]" /> Localized</span>
+          <motion.div variants={fadeUp} className="mt-16 flex items-center justify-center gap-8 text-sm text-muted">
+            <span className="flex items-center gap-2 hover:text-foreground transition-colors"><CheckCircle2 size={16} className="text-[var(--success)]" /> Guided</span>
+            <span className="flex items-center gap-2 hover:text-foreground transition-colors"><CheckCircle2 size={16} className="text-[var(--success)]" /> Simple</span>
+            <span className="flex items-center gap-2 hover:text-foreground transition-colors"><CheckCircle2 size={16} className="text-[var(--success)]" /> Localized</span>
           </motion.div>
         </motion.div>
       </section>
@@ -187,7 +194,7 @@ export default function HomePage() {
                 transition={{ delay: i * 0.15 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-purple-500/10 flex items-center justify-center mx-auto mb-4 border border-[var(--glass-border)]">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--success)]/10 flex items-center justify-center mx-auto mb-4 border border-[var(--glass-border)]">
                   <s.icon size={28} className="text-[var(--accent-bright)]" />
                 </div>
                 <div className="text-xs text-[var(--accent)] font-mono mb-2">STEP {s.step}</div>
@@ -228,7 +235,7 @@ export default function HomePage() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto glass-card p-10 sm:p-14 text-center relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-purple-500/5" aria-hidden="true" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-[var(--success)]/5" aria-hidden="true" />
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Ready to start?
@@ -250,7 +257,7 @@ export default function HomePage() {
       <footer className="border-t border-[var(--glass-border)] py-8 px-4">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-gradient-to-br from-[var(--accent)] to-purple-500 flex items-center justify-center text-white text-xs font-bold">V</div>
+            <div className="w-6 h-6 rounded bg-gradient-to-br from-[var(--accent)] to-[var(--success)] flex items-center justify-center text-white text-xs font-bold">V</div>
             VoteGuide AI
           </div>
           <div className="flex gap-6">

@@ -65,8 +65,12 @@ export const useAppStore = create<AppState>()(
       checklist: defaultChecklist,
       currentStep: 0,
       language: 'en',
-      setProfile: (p) => set((s) => ({ profile: { ...s.profile, ...p } })),
-      setLanguage: (lang) => set({ language: lang }),
+      setProfile: (p) =>
+        set((s) => ({
+          profile: { ...s.profile, ...p },
+          language: p.preferredLanguage || s.language,
+        })),
+      setLanguage: (lang) => set((s) => ({ language: lang, profile: { ...s.profile, preferredLanguage: lang } })),
       toggleChecklistItem: (id) =>
         set((s) => ({
           checklist: s.checklist.map((item) =>

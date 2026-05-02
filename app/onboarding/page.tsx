@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, CheckCircle2, Globe, MapPin, Volume2, User } from "lucide-react";
@@ -19,6 +19,13 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const router = useRouter();
   const { profile, setProfile } = useAppStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const next = () => {
     if (step < STEPS.length - 1) setStep(step + 1);
@@ -49,7 +56,7 @@ export default function OnboardingPage() {
           {STEPS.map((_, i) => (
             <div key={i} className="flex-1 h-1.5 rounded-full overflow-hidden bg-white/5">
               <motion.div
-                className="h-full bg-gradient-to-r from-[var(--accent)] to-purple-500 rounded-full"
+                className="h-full bg-gradient-to-r from-[var(--accent)] to-[var(--success)] rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: i <= step ? "100%" : "0%" }}
                 transition={{ duration: 0.4, ease: "easeOut" }}

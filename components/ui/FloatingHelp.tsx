@@ -1,16 +1,33 @@
 "use client";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { useState, useEffect } from "react";
+import { MessageCircle, X, Send, Sparkles } from "lucide-react";
+
+const PoliticianAvatar = () => (
+  <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full bg-white">
+    <img 
+      src="/vector-cartoon-illustration-indian-politician-260nw-1393573994.jpg" 
+      alt="VoteGuide Assistant"
+      className="w-full h-full object-cover"
+    />
+  </div>
+);
 
 export function FloatingHelp() {
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState<{ role: "user" | "ai"; text: string }[]>([
-    { role: "ai", text: "Hi! I'm your VoteGuide assistant. Ask me anything about voting — eligibility, registration, documents, or finding your polling center." },
+    { role: "ai", text: "Namaste! I'm your VoteGuide assistant. Ask me anything about voting in India!" },
   ]);
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const sendMessage = async () => {
     if (!msg.trim()) return;
@@ -39,19 +56,33 @@ export function FloatingHelp() {
       {/* FAB */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full btn-primary flex items-center justify-center shadow-2xl glow-pulse"
-        whileHover={{ scale: 1.1 }}
+        className="fixed bottom-6 right-6 z-[100] w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-2xl group border-4 border-[var(--accent)]"
+        animate={{ 
+          y: [0, -10, 0],
+          rotate: [0, 2, -2, 0]
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        whileHover={{ scale: 1.1, y: -15 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open help chat"
       >
+        <div className="absolute -top-14 right-0 bg-[var(--accent)] text-white text-[11px] font-bold px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all transform group-hover:-translate-y-1 whitespace-nowrap pointer-events-none shadow-xl">
+          Namaste! Need help?
+          <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[var(--accent)] rotate-45" />
+        </div>
+        
         <AnimatePresence mode="wait">
           {open ? (
-            <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-              <X size={22} />
+            <motion.div key="close" initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0, opacity: 0 }}>
+              <X size={28} className="text-gray-800" />
             </motion.div>
           ) : (
-            <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-              <MessageCircle size={22} />
+            <motion.div key="avatar" className="w-full h-full" initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0, opacity: 0 }}>
+              <PoliticianAvatar />
             </motion.div>
           )}
         </AnimatePresence>

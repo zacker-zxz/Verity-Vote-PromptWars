@@ -36,8 +36,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# keep the voteguide-ai subfolder out (files are at root now)
-/voteguide-ai
 
 # vercel
 .vercel

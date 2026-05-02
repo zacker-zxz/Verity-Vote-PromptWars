@@ -22,20 +22,29 @@ export const metadata: Metadata = {
   keywords: ["voting", "election", "voter guide", "registration", "polling"],
 };
 
+import { TranslationProvider } from "@/components/TranslationProvider";
+
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <div className="bg-mesh" aria-hidden="true" />
+        <div className="aura" aria-hidden="true" />
+        <div className="clouds opacity-10" aria-hidden="true" />
         <Providers>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <FloatingHelp />
+          <TranslationProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <FloatingHelp />
+          </TranslationProvider>
         </Providers>
       </body>
     </html>

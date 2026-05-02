@@ -1,12 +1,15 @@
 export const SUPPORTED_LANGUAGES = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'mr', name: 'मराठी', flag: '🇮🇳' },
+  { code: 'te', name: 'తెలుగు', flag: '🇮🇳' },
+  { code: 'bn', name: 'বাংলা', flag: '🇮🇳' },
+  { code: 'ta', name: 'தமிழ்', flag: '🇮🇳' },
+  { code: 'kn', name: 'ಕನ್ನಡ', flag: '🇮🇳' },
+  { code: 'gu', name: 'ગુજરાતી', flag: '🇮🇳' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'pt', name: 'Português', flag: '🇧🇷' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
 ];
 
 export interface TimelineStage {
@@ -156,10 +159,14 @@ export const LEARNING_CARDS: LearningCard[] = [
 ];
 
 export const DEMO_CENTERS = [
-  { id: '1', name: 'City Hall Polling Station', address: '123 Main Street, Downtown', distance: '0.8 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 40.7128, lng: -74.006 },
-  { id: '2', name: 'Public Library – Community Room', address: '456 Oak Avenue, Midtown', distance: '1.2 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 40.7148, lng: -74.008 },
-  { id: '3', name: 'Lincoln Elementary School', address: '789 Park Road, Westside', distance: '2.1 km', hours: '7:00 AM – 7:00 PM', accessible: false, lat: 40.7168, lng: -74.012 },
-  { id: '4', name: 'Community Recreation Center', address: '321 River Drive, Eastside', distance: '3.5 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 40.7108, lng: -74.002 },
+  { id: '1', name: 'Gateway of India Civic Center', address: 'Apollo Bandar, Colaba, Mumbai, Maharashtra 400001', distance: '1.2 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 18.9220, lng: 72.8347 },
+  { id: '2', name: 'India Gate Public School', address: 'Kartavya Path, India Gate, New Delhi, Delhi 110001', distance: '0.8 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 28.6129, lng: 77.2295 },
+  { id: '3', name: 'Lalbagh Community Hall', address: 'Mavalli, Bengaluru, Karnataka 560004', distance: '2.5 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 12.9507, lng: 77.5848 },
+  { id: '4', name: 'Marina Beach Primary Center', address: 'Kamarajar Salai, Marina Beach, Chennai, Tamil Nadu 600005', distance: '1.5 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 13.0477, lng: 80.2824 },
+  { id: '5', name: 'Victoria Memorial Hall', address: '1, Queens Way, Maidan, Kolkata, West Bengal 700071', distance: '3.2 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 22.5448, lng: 88.3426 },
+  { id: '6', name: 'Charminar Heritage School', address: 'Charminar Rd, Hyderabad, Telangana 500002', distance: '4.0 km', hours: '7:00 AM – 7:00 PM', accessible: false, lat: 17.3616, lng: 78.4747 },
+  { id: '7', name: 'Shaniwar Wada Center', address: 'Shaniwar Peth, Pune, Maharashtra 411030', distance: '2.1 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 18.5195, lng: 73.8553 },
+  { id: '8', name: 'Sabarmati Ashram Hall', address: 'Gandhi Smarak Sangrahalaya, Ahmedabad, Gujarat 380027', distance: '5.4 km', hours: '7:00 AM – 7:00 PM', accessible: true, lat: 23.0607, lng: 72.5808 },
 ];
 
 export const COUNTRIES = [
