@@ -4,8 +4,12 @@ export async function POST(req: NextRequest) {
   try {
     const { text, targetLanguage } = await req.json();
 
-    if (!text || !targetLanguage) {
-      return NextResponse.json({ error: "Missing text or targetLanguage" }, { status: 400 });
+    if (!text || typeof text !== "string" || text.trim().length === 0 || !targetLanguage || typeof targetLanguage !== "string") {
+      return NextResponse.json({ error: "Missing or invalid text or targetLanguage" }, { status: 400 });
+    }
+
+    if (text.length > 5000) {
+      return NextResponse.json({ error: "Text too long for translation (max 5000 chars)." }, { status: 413 });
     }
 
     const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;

@@ -6,19 +6,7 @@ import {
 } from "lucide-react";
 import { DEMO_CENTERS } from "@/lib/knowledge-base";
 import { useState, useEffect, useCallback } from "react";
-
-/** Calculate straight-line distance between two lat/lng pairs in km */
-function haversine(lat1: number, lng1: number, lat2: number, lng2: number): string {
-  const R = 6371;
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLng = ((lng2 - lng1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-    Math.cos((lat2 * Math.PI) / 180) *
-    Math.sin(dLng / 2) ** 2;
-  return (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).toFixed(1);
-}
+import { calculateDistance } from "@/lib/utils";
 
 type CenterType = (typeof DEMO_CENTERS)[number];
 
@@ -299,7 +287,7 @@ export default function CentersPage() {
                     <div className="text-xs text-muted font-mono uppercase">Distance</div>
                     <div className="font-bold text-sm mt-1">
                       {userLocation
-                        ? `${haversine(userLocation.lat, userLocation.lng, selectedCenter.lat, selectedCenter.lng)} km`
+                        ? `${calculateDistance(userLocation.lat, userLocation.lng, selectedCenter.lat, selectedCenter.lng)} km`
                         : selectedCenter.distance}
                     </div>
                   </div>

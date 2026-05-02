@@ -49,9 +49,15 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json();
 
-    if (!message || typeof message !== "string") {
+    if (!message || typeof message !== "string" || message.trim().length === 0) {
       return NextResponse.json({ reply: "Please send a valid question." }, { status: 400 });
     }
+
+    if (message.length > 1000) {
+      return NextResponse.json({ reply: "Question is too long. Please keep it under 1000 characters." }, { status: 413 });
+    }
+
+    const sanitizedMessage = message.trim().replace(/[<>]/g, ""); // Basic XSS prevention
 
     // Try Gemini API if key is available
     const apiKey = process.env.GEMINI_API_KEY;
@@ -64,7 +70,7 @@ export async function POST(req: NextRequest) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               contents: [
-                { role: "user", parts: [{ text: `${ELECTION_CONTEXT}\n\nUser question: ${message}` }] },
+                { role: "user", parts: [{ text: `${ELECTION_CONTEXT}\n\nUser question: ${sanitizedMessage}` }] },
               ],
               generationConfig: { maxOutputTokens: 300, temperature: 0.7 },
             }),
