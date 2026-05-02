@@ -398,7 +398,7 @@ export default function CentersPage() {
                       <span className="flex items-center gap-1.5">
                         <Navigation size={10} />{" "}
                         {userLocation
-                          ? `${haversine(userLocation.lat, userLocation.lng, center.lat, center.lng)} km`
+                          ? `${calculateDistance(userLocation.lat, userLocation.lng, center.lat, center.lng)} km`
                           : center.distance}
                       </span>
                       <span className="flex items-center gap-1.5">
