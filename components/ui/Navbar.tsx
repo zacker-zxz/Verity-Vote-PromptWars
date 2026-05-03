@@ -36,7 +36,7 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   const currentLang = SUPPORTED_LANGUAGES.find((l) => l.code === language);
@@ -60,7 +60,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 glass-card border-b border-[var(--glass-border)] px-4 md:px-8 overflow-hidden" role="navigation" aria-label="Main navigation">
+      <nav className="sticky top-0 z-50 glass-card border-b border-[var(--glass-border)] px-4 md:px-8" role="navigation" aria-label="Main navigation">
         <div className="absolute top-0 left-0 w-full h-[3px] flex">
           <div className="flex-1 bg-[#FF9933]" />
           <div className="flex-1 bg-white" />
@@ -118,7 +118,7 @@ export function Navbar() {
                     initial={{ opacity: 0, y: -8, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                    className="absolute right-0 mt-2 w-48 glass-card p-2 z-50"
+                    className="absolute right-0 mt-2 w-48 glass-card p-2 z-[100] shadow-2xl"
                   >
                     {SUPPORTED_LANGUAGES.map((lang) => (
                       <button

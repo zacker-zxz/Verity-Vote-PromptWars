@@ -128,7 +128,9 @@ export default function FAQPage() {
 
       {/* Input */}
       <div className="shrink-0 flex gap-2">
+        <label htmlFor="faq-chat-input" className="sr-only">Type your question</label>
         <input
+          id="faq-chat-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}

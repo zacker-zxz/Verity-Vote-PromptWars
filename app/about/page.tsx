@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Cloud, Map, Languages, Brain, Shield, Database, ExternalLink } from "lucide-react";
+import { Cloud, Map, Languages, Brain, Shield, Database } from "lucide-react";
 
 const SERVICES = [
   { icon: Cloud, name: "Google Cloud Run", desc: "Serverless deployment for backend API routes and app hosting.", color: "text-blue-400" },

@@ -1,14 +1,17 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { MessageCircle, X, Send, Sparkles } from "lucide-react";
+import { X, Send } from "lucide-react";
 
 const PoliticianAvatar = () => (
   <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full bg-white">
-    <img 
+    <Image 
       src="/vector-cartoon-illustration-indian-politician-260nw-1393573994.jpg" 
       alt="VoteGuide Assistant"
+      width={64}
+      height={64}
       className="w-full h-full object-cover"
     />
   </div>
@@ -24,7 +27,7 @@ export function FloatingHelp() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   if (!mounted) return null;
@@ -133,7 +136,9 @@ export function FloatingHelp() {
             {/* Input */}
             <div className="p-3 border-t border-[var(--glass-border)]">
               <div className="flex gap-2">
+                <label htmlFor="floating-help-input" className="sr-only">Type your question</label>
                 <input
+                  id="floating-help-input"
                   value={msg}
                   onChange={(e) => setMsg(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}

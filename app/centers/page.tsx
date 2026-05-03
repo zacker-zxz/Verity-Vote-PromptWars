@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, Navigation, Accessibility, Clock, ExternalLink, Search,
-  Plus, Minus, X, Phone, Route, Star, ChevronRight,
+  Plus, Minus, X, Route, Star, ChevronRight,
 } from "lucide-react";
 import { DEMO_CENTERS } from "@/lib/knowledge-base";
 import { useState, useEffect, useCallback } from "react";
@@ -93,7 +93,8 @@ export default function CentersPage() {
         </motion.div>
 
         <div className="relative sm:w-96">
-          <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
+          <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" aria-hidden="true" />
+          <label htmlFor="center-search-input" className="sr-only">Search polling centers</label>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}

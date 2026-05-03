@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import {
-  Vote, ClipboardList, FileText, MapPin, ArrowRight, AlertTriangle, Lightbulb, BookOpen,
-  ArrowLeft, ShieldCheck, CheckCircle2, User
+  Vote, ClipboardList, FileText, MapPin, ArrowRight, Lightbulb, User, CheckCircle2,
+  ArrowLeft, ShieldCheck, BookOpen
 } from "lucide-react";
 import { LEARNING_CARDS } from "@/lib/knowledge-base";
 

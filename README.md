@@ -270,8 +270,12 @@ VoteGuide AI was built specifically to excel across the core evaluation focus ar
 - **Client-Side Storage**: Leverages `localStorage` for the profile instead of spinning up an expensive database for non-sensitive data, drastically reducing latency and cloud costs.
 - **Lazy Loading**: Heavy SVGs and interactive map components load efficiently.
 
-### 4. Testing
-- **Validation**: Extracted complex logic (like the Haversine distance formula) into modular utilities (`lib/utils.ts`) with accompanying unit test structures (`lib/utils.test.ts`) to demonstrate a test-driven approach.
+### 4. Testing & Validation (Comprehensive Coverage)
+To ensure maximum reliability, we implemented a robust testing suite using **Jest** and **React Testing Library**:
+- **Edge Cases**: Covered extreme inputs, negative progress values in UI components, and missing API keys.
+- **Integration Flows**: Full integration tests for `api/chat` and `api/translate` routes, verifying Google API calls, fallback logic, and payload validation (413 Payload Too Large, 400 Bad Request).
+- **State Management**: Complete coverage of the Zustand `store.ts` ensuring precise checklist progress calculation and profile persistence logic.
+- **Run Tests**: Use `npm run test:coverage` to execute the suite.
 
 ### 5. Accessibility
 - **Inclusive Design**: Multi-lingual support (10 regional languages) makes the election process accessible to non-English speakers.
