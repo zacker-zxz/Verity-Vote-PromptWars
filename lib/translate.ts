@@ -1,9 +1,9 @@
 /**
- * @fileoverview Google Cloud Translation API client for VoteGuide AI.
+ * @fileoverview Google Cloud Translation API client for CivicFlow.
  *
- * Isolates all calls to the Google Translate REST API v2.  Route handlers
- * import this module instead of embedding raw `fetch` logic, keeping them
- * thin and making the translation logic independently testable.
+ * Provides a thin wrapper around the Google Translate v2 API. The key is
+ * injected server-side from GOOGLE_TRANSLATE_API_KEY and never sent to the
+ * browser.  All calls go through the /api/translate route handler.
  */
 
 import type { GoogleTranslateResponse } from "./types";

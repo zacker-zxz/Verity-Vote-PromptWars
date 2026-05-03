@@ -1,5 +1,5 @@
 /**
- * @fileoverview Gemini AI API client for VoteGuide AI.
+ * @fileoverview Gemini AI API client for CivicFlow.
  *
  * Centralises all calls to the Google Gemini generative language API so that
  * route handlers remain thin and business logic can be unit-tested in
@@ -12,11 +12,11 @@ const GEMINI_BASE_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
 /**
- * System prompt that anchors VoteGuide AI to the election-assistance domain.
+ * System prompt that anchors CivicFlow to the civic-assistance domain.
  * Keeping it here (rather than inside the route handler) makes it easy to
  * update the persona without touching HTTP infrastructure.
  */
-export const ELECTION_CONTEXT = `You are VoteGuide AI — a friendly, knowledgeable election assistant designed to help users understand the election process, timelines, and steps in an interactive and easy-to-follow way. You help users with:
+export const ELECTION_CONTEXT = `You are CivicFlow — a friendly, knowledgeable civic assistant designed to help users understand elections, registration, and participation in an interactive and easy-to-follow way. You help users with:
 - Voter eligibility requirements
 - How to register to vote
 - What documents are needed

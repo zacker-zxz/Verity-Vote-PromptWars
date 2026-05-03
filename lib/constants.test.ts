@@ -70,11 +70,11 @@ describe("Map Constants", () => {
 });
 
 describe("Application Metadata Constants", () => {
-  it("APP_NAME should be VoteGuide AI", () => {
-    expect(APP_NAME).toBe("VoteGuide AI");
+  it("APP_NAME should be CivicFlow", () => {
+    expect(APP_NAME).toBe("CivicFlow");
   });
 
-  it("APP_TAGLINE should reference the problem statement", () => {
-    expect(APP_TAGLINE.toLowerCase()).toContain("election process");
+  it("APP_TAGLINE should reference the core mission", () => {
+    expect(APP_TAGLINE.toLowerCase()).toContain("civic");
   });
 });

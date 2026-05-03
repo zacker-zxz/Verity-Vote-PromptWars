@@ -89,7 +89,7 @@ describe("ELECTION_CONTEXT", () => {
     expect(ELECTION_CONTEXT.length).toBeGreaterThan(0);
   });
 
-  it("should mention VoteGuide AI", () => {
-    expect(ELECTION_CONTEXT).toContain("VoteGuide AI");
+  it("should mention CivicFlow", () => {
+    expect(ELECTION_CONTEXT).toContain("CivicFlow");
   });
 });

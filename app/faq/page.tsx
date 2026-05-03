@@ -11,7 +11,7 @@ interface Message {
 
 export default function FAQPage() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: "ai", text: "Hello! I'm your VoteGuide AI assistant. Ask me anything about elections — eligibility, registration, documents, deadlines, or finding your polling center. You can also tap a suggested question below." },
+    { role: "ai", text: "Hello! I'm your CivicFlow assistant. How can I help you today? Ask me anything about elections, registration, or voting." },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -54,8 +54,8 @@ export default function FAQPage() {
             <Sparkles size={20} className="text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold">VoteGuide AI Assistant</h1>
-            <p className="text-xs text-muted">Powered by Google Gemini</p>
+            <h1 className="text-xl font-bold">CivicFlow Assistant</h1>
+            <p className="text-xs text-muted">Powered by AI</p>
           </div>
         </div>
       </motion.div>

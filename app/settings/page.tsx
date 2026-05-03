@@ -13,7 +13,7 @@ export default function SettingsPage() {
     <div className="max-w-2xl mx-auto px-4 py-12 page-enter">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-3xl font-bold mb-2">Settings</h1>
-        <p className="text-muted text-sm mb-10">Customize your VoteGuide experience.</p>
+        <p className="text-muted text-sm mb-10">Customize your CivicFlow experience.</p>
       </motion.div>
 
       <div className="space-y-6">

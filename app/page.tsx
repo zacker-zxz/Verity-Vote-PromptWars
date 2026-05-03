@@ -18,22 +18,22 @@ const FEATURES = [
     icon: ShieldCheck,
     title: "Eligibility Check",
     desc: "Answer a few questions and instantly know if you can vote, what you need, and what to do next.",
-    color: "from-emerald-500/20 to-emerald-500/5",
-    iconColor: "text-emerald-400",
+    color: "from-blue-500/20 to-blue-500/5",
+    iconColor: "text-blue-500",
   },
   {
     icon: MapPin,
     title: "Find Polling Centers",
-    desc: "Discover your nearest voting station with Google Maps — distance, hours, accessibility, and directions.",
-    color: "from-blue-500/20 to-blue-500/5",
-    iconColor: "text-blue-400",
+    desc: "Discover your nearest voting station with maps — distance, hours, accessibility, and directions.",
+    color: "from-emerald-500/20 to-emerald-500/5",
+    iconColor: "text-emerald-500",
   },
   {
     icon: Globe,
     title: "Your Language",
     desc: "Switch to your preferred language instantly. Every guide, FAQ, and step is translated for you.",
     color: "from-amber-500/20 to-amber-500/5",
-    iconColor: "text-amber-400",
+    iconColor: "text-amber-500",
   },
 ];
 
@@ -85,29 +85,29 @@ export default function HomePage() {
           {/* Badge */}
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[var(--glass-border)] text-sm text-muted mb-8 hover:border-[var(--accent)] transition-colors cursor-default">
             <Sparkles size={14} className="text-[var(--accent)] animate-pulse" />
-            Powered by Google AI &amp; Maps
+            Powered by AI
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
             className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            Your Election
+            Your Civic
             <br />
-            <span className="gradient-text drop-shadow-2xl">Journey Starts Here</span>
+            <span className="gradient-text drop-shadow-2xl">Journey Begins Here</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
             className="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto"
           >
-            An intelligent assistant designed to help you understand the election process, timelines, and steps in an interactive and easy-to-follow way. Start your journey today!
+            An intelligent assistant designed to help you understand elections, registration, and civic duties — all in an interactive, easy-to-follow experience.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/onboarding" className="btn-primary px-10 py-5 text-lg flex items-center gap-3 group glow-accent">
               <span className="relative z-10 flex items-center gap-2">
-                Start Your Journey
+                Get Started
                 <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
               </span>
             </Link>
@@ -237,10 +237,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 to-[var(--success)]/5" aria-hidden="true" />
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Ready to start?
+              Ready to participate?
             </h2>
             <p className="text-muted mb-8 max-w-lg mx-auto">
-              Join thousands of voters who used VoteGuide AI to navigate their first (or next) election with ease.
+              Join thousands of users who use CivicFlow to navigate elections with confidence.
             </p>
             <Link href="/onboarding" className="btn-primary px-10 py-4 text-base inline-flex items-center gap-2 group">
               <span className="relative z-10 flex items-center gap-2">
@@ -256,15 +256,15 @@ export default function HomePage() {
       <footer className="border-t border-[var(--glass-border)] py-8 px-4">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-gradient-to-br from-[var(--accent)] to-[var(--success)] flex items-center justify-center text-white text-xs font-bold">V</div>
-            VoteGuide AI
+            <div className="w-6 h-6 rounded bg-gradient-to-br from-[var(--accent)] to-[var(--success)] flex items-center justify-center text-white text-xs font-bold">C</div>
+            CivicFlow
           </div>
           <div className="flex gap-6">
             <Link href="/about" className="hover:text-foreground transition-colors">About</Link>
             <Link href="/faq" className="hover:text-foreground transition-colors">FAQ</Link>
             <Link href="/settings" className="hover:text-foreground transition-colors">Settings</Link>
           </div>
-          <p>Built with Google Cloud &amp; Gemini AI</p>
+          <p>Powered by AI for Democracy</p>
         </div>
       </footer>
     </div>

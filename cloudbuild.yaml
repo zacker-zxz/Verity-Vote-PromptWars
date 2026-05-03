@@ -1,11 +1,11 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/voteguide-ai', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/civicflow', '.']
 
   # Push the image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/voteguide-ai']
+    args: ['push', 'gcr.io/$PROJECT_ID/civicflow']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -13,9 +13,9 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'voteguide-ai'
+      - 'civicflow'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/voteguide-ai'
+      - 'gcr.io/$PROJECT_ID/civicflow'
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -30,4 +30,4 @@ substitutions:
   _NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ''
 
 images:
-  - 'gcr.io/$PROJECT_ID/voteguide-ai'
+  - 'gcr.io/$PROJECT_ID/civicflow'

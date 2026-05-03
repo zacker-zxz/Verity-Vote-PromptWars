@@ -2,12 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Page Not Found — VoteGuide AI",
+  title: "Page Not Found — CivicFlow",
   description: "The page you are looking for could not be found.",
 };
 
 /**
- * Custom 404 Not Found page for VoteGuide AI.
+ * Custom 404 Not Found page for CivicFlow.
  *
  * Next.js renders this component when no route matches the requested URL.
  * A custom 404 keeps users within the branded experience and provides
@@ -34,7 +34,7 @@ export default function NotFound() {
           <Link
             href="/"
             className="btn-primary px-6 py-2 text-sm"
-            aria-label="Go to VoteGuide AI home page"
+            aria-label="Go to CivicFlow home page"
           >
             Go Home
           </Link>

@@ -9,7 +9,7 @@ const PoliticianAvatar = () => (
   <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full bg-white">
     <Image 
       src="/vector-cartoon-illustration-indian-politician-260nw-1393573994.jpg" 
-      alt="VoteGuide Assistant"
+      alt="CivicFlow Assistant"
       width={64}
       height={64}
       className="w-full h-full object-cover"
@@ -21,7 +21,7 @@ export function FloatingHelp() {
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState<{ role: "user" | "ai"; text: string }[]>([
-    { role: "ai", text: "Namaste! I'm your VoteGuide assistant. Ask me anything about voting in India!" },
+    { role: "ai", text: "Hello! I'm your CivicFlow assistant. How can I help you today?" },
   ]);
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -104,8 +104,8 @@ export function FloatingHelp() {
             {/* Header */}
             <div className="px-4 py-3 border-b border-[var(--glass-border)] flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse" />
-              <span className="font-semibold text-sm">VoteGuide Assistant</span>
-              <span className="text-xs text-muted ml-auto">Powered by Gemini</span>
+              <span className="font-semibold text-sm">CivicFlow Assistant</span>
+              <span className="text-xs text-muted ml-auto">Powered by AI</span>
             </div>
 
             {/* Messages */}

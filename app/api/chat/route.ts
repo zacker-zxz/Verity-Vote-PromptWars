@@ -1,5 +1,5 @@
 /**
- * @fileoverview POST /api/chat — VoteGuide AI election assistant endpoint.
+ * @fileoverview POST /api/chat — CivicFlow civic assistant endpoint.
  *
  * Accepts a user question, validates it with Zod, calls Gemini AI for an
  * answer, and falls back to a curated keyword-matched response when the API

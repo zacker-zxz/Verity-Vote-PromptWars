@@ -1,5 +1,5 @@
 /**
- * @fileoverview Application-wide constants for VoteGuide AI.
+ * @fileoverview Application-wide constants for CivicFlow.
  *
  * All magic strings, numeric limits, and environment-independent configuration
  * values live here.  Centralising them eliminates "magic literals" scattered
@@ -47,11 +47,11 @@ export const CENTER_PROXIMITY_RADIUS_KM = 50;
 // ---------------------------------------------------------------------------
 
 /** Human-readable application name used across UI and docs. */
-export const APP_NAME = "VoteGuide AI";
+export const APP_NAME = "CivicFlow";
 
-/** Short tagline aligned with the hackathon problem statement. */
+/** Short tagline aligned with the core mission. */
 export const APP_TAGLINE =
-  "Helping users understand the election process, timelines, and steps in an interactive and easy-to-follow way.";
+  "Your interactive companion for understanding elections, registration, and civic participation.";
 
 /** Public base URL (falls back to localhost for local development). */
 export const APP_BASE_URL =

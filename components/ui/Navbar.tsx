@@ -41,39 +41,39 @@ export function Navbar() {
 
   const currentLang = SUPPORTED_LANGUAGES.find((l) => l.code === language);
 
-  if (!mounted) {
-    return (
-      <nav className="sticky top-0 z-50 glass-card border-b border-[var(--glass-border)] px-4 py-3 md:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-white/5" />
-            <span className="font-bold text-lg hidden sm:block opacity-50">VoteGuide AI</span>
-          </div>
-          <div className="flex gap-4">
-            <div className="w-24 h-8 rounded-full bg-white/5" />
-            <div className="w-8 h-8 rounded-lg bg-white/5" />
-          </div>
-        </div>
-      </nav>
-    );
-  }
+   if (!mounted) {
+     return (
+       <nav className="sticky top-0 z-50 glass-card border-b border-[var(--glass-border)] px-4 py-3 md:px-8">
+         <div className="max-w-7xl mx-auto flex items-center justify-between">
+           <div className="flex items-center gap-2">
+             <div className="w-8 h-8 rounded-lg bg-white/5" />
+             <span className="font-bold text-lg hidden sm:block opacity-50">CivicFlow</span>
+           </div>
+           <div className="flex gap-4">
+             <div className="w-24 h-8 rounded-full bg-white/5" />
+             <div className="w-8 h-8 rounded-lg bg-white/5" />
+           </div>
+         </div>
+       </nav>
+     );
+   }
 
   return (
     <>
       <nav className="sticky top-0 z-50 glass-card border-b border-[var(--glass-border)] px-4 md:px-8" role="navigation" aria-label="Main navigation">
         <div className="absolute top-0 left-0 w-full h-[3px] flex">
-          <div className="flex-1 bg-[#FF9933]" />
+          <div className="flex-1 bg-[var(--accent)]" />
           <div className="flex-1 bg-white" />
-          <div className="flex-1 bg-[#138808]" />
+          <div className="flex-1 bg-[var(--success)]" />
         </div>
         <div className="max-w-7xl mx-auto flex items-center justify-between py-3">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group" aria-label="VoteGuide AI Home">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="CivicFlow Home">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--success)] flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">
-              V
+              C
             </div>
             <span className="font-bold text-lg hidden sm:block">
-              <span className="gradient-text">VoteGuide</span>{" "}
+              <span className="gradient-text">CivicFlow</span>{" "}
               <span className="text-muted text-sm font-normal">AI</span>
             </span>
           </Link>

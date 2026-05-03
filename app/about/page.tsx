@@ -15,9 +15,9 @@ export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12 page-enter">
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold mb-2">About VoteGuide AI</h1>
+        <h1 className="text-3xl font-bold mb-2">About CivicFlow</h1>
         <p className="text-muted text-sm mb-10">
-          An AI-powered election assistant that simplifies the voting process for everyone.
+          An AI-powered civic assistant that simplifies elections and participation for everyone.
         </p>
       </motion.div>
 
@@ -25,9 +25,9 @@ export default function AboutPage() {
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card p-8 mb-8">
         <h2 className="text-xl font-bold mb-3 gradient-text">Our Mission</h2>
         <p className="text-muted text-sm leading-relaxed">
-          Voting is a fundamental right, yet millions of eligible voters skip elections due to confusion, 
-          lack of information, or unclear processes. VoteGuide AI bridges this gap by providing personalized, 
-          step-by-step guidance in multiple languages — making election participation accessible, simple, and 
+          Voting is a fundamental right, yet many eligible voters miss elections due to confusion, 
+          lack of information, or unclear processes. CivicFlow bridges this gap by providing personalized, 
+          step-by-step guidance in multiple languages — making civic participation accessible, simple, and 
           stress-free for everyone, especially first-time voters.
         </p>
       </motion.div>

@@ -114,23 +114,22 @@ export default function CentersPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="flex-[2] glass-card overflow-hidden relative border border-[var(--glass-border)] shadow-2xl min-h-[350px] lg:min-h-full rounded-2xl"
         >
-          {mapUrl ? (
-            <iframe
-              width="100%"
-              height="100%"
-              style={{
-                border: 0,
-                filter: "invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)",
-              }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              src={mapUrl}
-              title="Polling station map"
-            />
-          ) : (
-            /* Fallback interactive demo map when no API key */
-            <div className="absolute inset-0 bg-[#080a12] flex flex-col items-center justify-center">
+           {mapUrl ? (
+             <iframe
+               width="100%"
+               height="100%"
+               style={{
+                 border: 0,
+               }}
+               loading="lazy"
+               allowFullScreen
+               referrerPolicy="no-referrer-when-downgrade"
+               src={mapUrl}
+               title="Polling station map"
+             />
+           ) : (
+             /* Fallback interactive demo map when no API key */
+             <div className="absolute inset-0 bg-[var(--surface)] flex flex-col items-center justify-center">
               <div
                 className="absolute inset-0 opacity-10 pointer-events-none"
                 style={{
