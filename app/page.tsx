@@ -99,10 +99,9 @@ export default function HomePage() {
 
           <motion.p
             variants={fadeUp}
-            className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto"
           >
-            From eligibility to election day — a personalized, step-by-step guide
-            that removes confusion and helps you vote with confidence.
+            An intelligent assistant designed to help you understand the election process, timelines, and steps in an interactive and easy-to-follow way. Start your journey today!
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -20,7 +20,10 @@
 
 > **Election Process Assistant** — Help users understand the election process, timelines, and steps in an interactive and easy-to-follow way.
 
-We chose this vertical because **India is the world's largest democracy with 970+ million eligible voters**, yet millions — especially first-time voters aged 18–24 — are confused by the multi-step process from registration to casting a ballot. VoteGuide AI eliminates that confusion by acting as a **personal election sherpa**: it onboards users, assesses their status, builds a custom roadmap, and guides them step-by-step through Election Day — all in their native language.
+## 🎯 Problem Statement
+**"Create an assistant that helps users understand the election process, timelines, and steps in an interactive and easy-to-follow way."**
+
+VoteGuide AI perfectly aligns with this by providing a conversational, multi-lingual interface that breaks down complex voting requirements into simple, interactive, and easy-to-follow steps.
 
 ---
 
