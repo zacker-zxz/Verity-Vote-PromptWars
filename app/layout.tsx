@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 };
 
 import { TranslationProvider } from "@/components/TranslationProvider";
+import "@/lib/firebase"; // Initialize Firebase Google Services
 
 export default function RootLayout({
   children,

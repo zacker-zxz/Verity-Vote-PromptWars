@@ -107,8 +107,10 @@ export function Navbar() {
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-[var(--glass-border)] text-sm hover:border-[var(--accent)] transition-all"
                 aria-label="Change language"
+                aria-haspopup="menu"
+                aria-expanded={langOpen}
               >
-                <Globe size={14} />
+                <Globe size={14} aria-hidden="true" />
                 <span className="hidden sm:inline">{currentLang?.flag} {currentLang?.name}</span>
                 <span className="sm:hidden">{currentLang?.flag}</span>
               </button>
@@ -149,8 +151,10 @@ export function Navbar() {
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-white/5"
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              aria-haspopup="menu"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
         </div>

@@ -5,7 +5,8 @@ import {
   Plus, Minus, X, Route, Star, ChevronRight,
 } from "lucide-react";
 import { DEMO_CENTERS } from "@/lib/knowledge-base";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { calculateDistance } from "@/lib/utils";
 
 type CenterType = (typeof DEMO_CENTERS)[number];
