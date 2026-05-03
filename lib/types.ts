@@ -1,6 +1,14 @@
 /**
+<<<<<<< HEAD
  * @fileoverview Shared TypeScript interfaces and types for VoteGuide AI API.
  * Centralising these prevents type drift between routes, clients, and tests.
+=======
+ * @fileoverview Shared TypeScript interfaces and types for CivicFlow API.
+ *
+ * Central type definitions for request/response payloads across API routes,
+ * client stores, and component props.  Keeping types in one place prevents
+ * circular dependencies and ensures consistency between frontend and backend.
+>>>>>>> 07e37ac89f6262a75e08abc35848a720f8e03753
  */
 
 // ---------------------------------------------------------------------------

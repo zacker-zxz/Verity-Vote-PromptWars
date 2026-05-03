@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import Link from "next/link";
 
 /**
+<<<<<<< HEAD
  * Global error boundary for VoteGuide AI.
+=======
+ * Global error boundary for CivicFlow.
+>>>>>>> 07e37ac89f6262a75e08abc35848a720f8e03753
  *
  * Next.js renders this component whenever an unhandled runtime error occurs
  * inside the app directory.  It provides a safe, branded fallback UI instead
@@ -23,7 +27,11 @@ export default function GlobalError({
     // In production you would pipe this to your error monitoring service
     // (e.g. Sentry, Datadog) instead of the console.
     if (process.env.NODE_ENV === "development") {
+<<<<<<< HEAD
       console.error("[VoteGuide AI] Unhandled error:", error);
+=======
+      console.error("[CivicFlow] Unhandled error:", error);
+>>>>>>> 07e37ac89f6262a75e08abc35848a720f8e03753
     }
   }, [error]);
 

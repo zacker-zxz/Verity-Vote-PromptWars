@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VoteGuide AI — Your Election Journey Starts Here",
+  title: "CivicFlow — Your Interactive Election Companion",
   description:
     "An interactive, AI-powered election assistant that helps you understand eligibility, registration, timelines, documents, and polling centers in your language.",
-  keywords: ["voting", "election", "voter guide", "registration", "polling"],
+  keywords: ["voting", "election", "voter guide", "registration", "polling", "civic", "democracy"],
 };
 
 import { TranslationProvider } from "@/components/TranslationProvider";

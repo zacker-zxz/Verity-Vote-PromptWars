@@ -34,10 +34,23 @@ const translateRequestSchema = z.object({
 // ---------------------------------------------------------------------------
 
 /**
+<<<<<<< HEAD
  * Handles POST /api/translate requests.
  *
  * @param req - Incoming Next.js request with `{ text: string; targetLanguage: string }` JSON body.
  * @returns JSON response with `translatedText` (and optionally a `note`), or an error response.
+=======
+ * @fileoverview POST /api/translate — Text translation endpoint for CivicFlow.
+ *
+ * Accepts a JSON payload with `{ text: string, targetLang: string }`,
+ * forwards the request to the Google Cloud Translation API, and returns
+ * `{ translated: string }`.  The API key is injected server-side from
+ * `GOOGLE_TRANSLATE_API_KEY` and never exposed to the client.
+ *
+ * Input is length-validated via Zod (max 5000 characters).  If the
+ * translation service fails, the original text is returned as a fallback
+ * to keep the UI functional.
+>>>>>>> 07e37ac89f6262a75e08abc35848a720f8e03753
  */
 export async function POST(
   req: NextRequest

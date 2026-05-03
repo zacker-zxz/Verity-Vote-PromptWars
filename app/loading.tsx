@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * Global loading skeleton for VoteGuide AI.
+=======
+ * Global loading skeleton for CivicFlow.
+>>>>>>> 07e37ac89f6262a75e08abc35848a720f8e03753
  *
  * Next.js automatically renders this component as an instant loading state
  * while page content is being fetched or rendered server-side.  Using a

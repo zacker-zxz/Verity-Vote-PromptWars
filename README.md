@@ -63,7 +63,7 @@ We designed VoteGuide AI around **three pillars**:
 1. **Mobile-first, Landscape-optimized** — Built with `calc(100vh - 4rem)` flex layouts so every page fits the screen without scrolling on desktop
 2. **Indian Tricolor Theme** — Saffron (#FF9933) and Green (#138808) as primary/secondary, with a dark glassmorphism aesthetic
 3. **Real-time Translation** — A custom `<T>` wrapper component calls Google Translate API dynamically, supporting 10 Indian regional languages
-4. **No backend database needed** — All user state (profile, checklist progress) is persisted client-side via Zustand + localStorage, making the app instantly deployable and privacy-friendly
+4. **No backend database needed** — All user state (profile, checklist progress) is persisted client-side via Zustand + localStorage, making the app instantly deployable and privacy-friendly.
 
 ---
 
