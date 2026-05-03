@@ -1,47 +1,70 @@
+/**
+ * @fileoverview POST /api/translate — Text translation endpoint for VoteGuide AI.
+ *
+ * Accepts source text and a target language code, validates with Zod, calls
+ * the Google Cloud Translation API, and gracefully falls back to returning the
+ * original text when no API key is configured.
+ *
+ * @module app/api/translate/route
+ */
+
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { translateText } from "@/lib/translate";
+import { TRANSLATE_TEXT_MAX_LENGTH } from "@/lib/constants";
+import type { TranslateResponse, ApiErrorResponse } from "@/lib/types";
 
-export async function POST(req: NextRequest) {
+// ---------------------------------------------------------------------------
+// Request validation schema
+// ---------------------------------------------------------------------------
+
+const translateRequestSchema = z.object({
+  text: z
+    .string()
+    .min(1, "Missing or invalid text")
+    .max(
+      TRANSLATE_TEXT_MAX_LENGTH,
+      `Text too long for translation (max ${TRANSLATE_TEXT_MAX_LENGTH} chars).`
+    ),
+  targetLanguage: z.string().min(1, "Missing or invalid targetLanguage"),
+});
+
+// ---------------------------------------------------------------------------
+// Route handler
+// ---------------------------------------------------------------------------
+
+/**
+ * Handles POST /api/translate requests.
+ *
+ * @param req - Incoming Next.js request with `{ text: string; targetLanguage: string }` JSON body.
+ * @returns JSON response with `translatedText` (and optionally a `note`), or an error response.
+ */
+export async function POST(
+  req: NextRequest
+): Promise<NextResponse<TranslateResponse | ApiErrorResponse>> {
   try {
-    const { text, targetLanguage } = await req.json();
+    const body = await req.json();
+    const result = translateRequestSchema.safeParse(body);
 
-    if (!text || typeof text !== "string" || text.trim().length === 0 || !targetLanguage || typeof targetLanguage !== "string") {
-      return NextResponse.json({ error: "Missing or invalid text or targetLanguage" }, { status: 400 });
+    if (!result.success) {
+      const errorMessage = result.error?.issues?.[0]?.message ?? "Invalid input";
+      const status = errorMessage.includes("too long") ? 413 : 400;
+      return NextResponse.json({ error: errorMessage }, { status });
     }
 
-    if (text.length > 5000) {
-      return NextResponse.json({ error: "Text too long for translation (max 5000 chars)." }, { status: 413 });
-    }
-
+    const { text, targetLanguage } = result.data;
     const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;
 
     if (apiKey) {
       try {
-        const response = await fetch(
-          `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              q: text,
-              target: targetLanguage,
-              format: "text",
-            }),
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          const translated = data.data?.translations?.[0]?.translatedText;
-          if (translated) {
-            return NextResponse.json({ translatedText: translated });
-          }
-        }
+        const translated = await translateText(text, targetLanguage, apiKey);
+        if (translated) return NextResponse.json({ translatedText: translated });
       } catch {
-        // Fall through to fallback
+        // Intentionally swallowed — fall through to the graceful fallback
       }
     }
 
-    // Fallback: return original text with a note
+    // Graceful degradation: return the original text so the UI never breaks
     return NextResponse.json({
       translatedText: text,
       note: "Translation API not configured. Add GOOGLE_TRANSLATE_API_KEY to enable.",

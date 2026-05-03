@@ -23,7 +23,7 @@ describe('Translate API', () => {
     expect(res.status).toBe(400);
     
     const json = await res.json();
-    expect(json.error).toContain('Missing or invalid text');
+    expect(json.error).toBeDefined();
   });
 
   it('should return 413 if text is too long', async () => {

@@ -1,23 +1,38 @@
+/**
+ * @fileoverview POST /api/chat — VoteGuide AI election assistant endpoint.
+ *
+ * Accepts a user question, validates it with Zod, calls Gemini AI for an
+ * answer, and falls back to a curated keyword-matched response when the API
+ * key is absent or the call fails.
+ *
+ * @module app/api/chat/route
+ */
+
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { callGemini } from "@/lib/gemini";
+import { CHAT_MESSAGE_MAX_LENGTH } from "@/lib/constants";
+import type { ChatResponse } from "@/lib/types";
 
-const ELECTION_CONTEXT = `You are VoteGuide AI — a friendly, knowledgeable election assistant. You help users understand:
-- Voter eligibility requirements
-- How to register to vote
-- What documents are needed
-- Where to find polling centers
-- Election day procedures
-- Deadlines and timelines
-- Post-voting information
+// ---------------------------------------------------------------------------
+// Request validation schema
+// ---------------------------------------------------------------------------
 
-Rules:
-- Keep answers concise (2-4 sentences max)
-- Use simple, clear language
-- Be encouraging and helpful
-- If you don't know something specific, suggest the user check their local election commission
-- Never give legal advice
-- Always mention that requirements vary by region when relevant`;
+const chatRequestSchema = z.object({
+  message: z
+    .string()
+    .trim()
+    .min(1, "Please send a valid question.")
+    .max(
+      CHAT_MESSAGE_MAX_LENGTH,
+      `Question is too long. Please keep it under ${CHAT_MESSAGE_MAX_LENGTH} characters.`
+    ),
+});
 
-// Fallback responses for when Gemini API is not configured
+// ---------------------------------------------------------------------------
+// Fallback responses (used when Gemini API is unavailable)
+// ---------------------------------------------------------------------------
+
 const FALLBACK_RESPONSES: Record<string, string> = {
   eligible:
     "You're generally eligible to vote if you're a citizen aged 18 or older and a registered resident of your voting district. Requirements vary by region — use our eligibility checker or visit your local election commission website for exact details.",
@@ -37,6 +52,12 @@ const FALLBACK_RESPONSES: Record<string, string> = {
     "That's a great question! While I'd need more specific details about your region to give an exact answer, I recommend checking our Timeline and Learn sections for general guidance, or visiting your local election commission's website for region-specific information.",
 };
 
+/**
+ * Returns a keyword-matched fallback answer for common election queries.
+ *
+ * @param message - The raw user message (will be lower-cased internally).
+ * @returns A pre-written response string.
+ */
 function getFallbackResponse(message: string): string {
   const lower = message.toLowerCase();
   for (const [key, response] of Object.entries(FALLBACK_RESPONSES)) {
@@ -45,52 +66,42 @@ function getFallbackResponse(message: string): string {
   return FALLBACK_RESPONSES.default;
 }
 
-export async function POST(req: NextRequest) {
+// ---------------------------------------------------------------------------
+// Route handler
+// ---------------------------------------------------------------------------
+
+/**
+ * Handles POST /api/chat requests.
+ *
+ * @param req - Incoming Next.js request containing `{ message: string }` JSON body.
+ * @returns JSON response with a `reply` field, or an error response.
+ */
+export async function POST(req: NextRequest): Promise<NextResponse<ChatResponse | { reply: string }>> {
   try {
-    const { message } = await req.json();
+    const body = await req.json();
+    const result = chatRequestSchema.safeParse(body);
 
-    if (!message || typeof message !== "string" || message.trim().length === 0) {
-      return NextResponse.json({ reply: "Please send a valid question." }, { status: 400 });
+    if (!result.success) {
+      const errorMessage = result.error?.issues?.[0]?.message ?? "Invalid input";
+      const status = errorMessage.includes("too long") ? 413 : 400;
+      return NextResponse.json({ reply: errorMessage }, { status });
     }
 
-    if (message.length > 1000) {
-      return NextResponse.json({ reply: "Question is too long. Please keep it under 1000 characters." }, { status: 413 });
-    }
+    const { message } = result.data;
+    // Strip HTML-significant characters to prevent any XSS in downstream rendering
+    const sanitizedMessage = message.replace(/[<>]/g, "");
 
-    const sanitizedMessage = message.trim().replace(/[<>]/g, ""); // Basic XSS prevention
-
-    // Try Gemini API if key is available
     const apiKey = process.env.GEMINI_API_KEY;
     if (apiKey) {
       try {
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [
-                { role: "user", parts: [{ text: `${ELECTION_CONTEXT}\n\nUser question: ${sanitizedMessage}` }] },
-              ],
-              generationConfig: { maxOutputTokens: 300, temperature: 0.7 },
-            }),
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (reply) {
-            return NextResponse.json({ reply });
-          }
-        }
+        const reply = await callGemini(sanitizedMessage, apiKey);
+        if (reply) return NextResponse.json({ reply });
       } catch {
-        // Fall through to fallback
+        // Intentionally swallowed — fall through to the curated fallback
       }
     }
 
-    // Fallback response
-    return NextResponse.json({ reply: getFallbackResponse(message) });
+    return NextResponse.json({ reply: getFallbackResponse(sanitizedMessage) });
   } catch {
     return NextResponse.json(
       { reply: "Sorry, something went wrong. Please try again." },
